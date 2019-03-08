@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MeninyEntryFragment">
+
+    <TextView
+        android:id="@+id/FirstLetter"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="X"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="36sp"
+        android:textStyle="italic"
+        android:typeface="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/EntryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="Meno"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/FirstLetter"
+        app:layout_constraintStart_toEndOf="@+id/FirstLetter"
+        app:layout_constraintTop_toTopOf="@+id/FirstLetter" />
+
+    <TextView
+        android:id="@+id/entryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_mono_light_italic"
+        android:text="Dátum"
+        app:layout_constraintStart_toEndOf="@+id/EntryName"
+        app:layout_constraintTop_toTopOf="@+id/FirstLetter" />
+
+    <TextView
+        android:id="@+id/EntryDescription"
+        android:layout_width="205dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_mono_light_italic"
+        android:text="Popis"
+        app:layout_constraintBottom_toBottomOf="@+id/FirstLetter"
+        app:layout_constraintStart_toEndOf="@+id/EntryName" />
+</android.support.constraint.ConstraintLayout>

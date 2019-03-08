@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/headerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="@string/headerText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/menoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="findByName"
+        android:text="@string/menoButton"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintStart_toStartOf="@+id/nameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_mono_light_italic"
+        android:text="@string/menoTextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#292929"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerText" />
+
+    <EditText
+        android:id="@+id/customDateText"
+        android:layout_width="141dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="none"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/byDateTextView"
+        app:layout_constraintStart_toStartOf="@+id/byDateTextView"
+        app:layout_constraintTop_toBottomOf="@+id/byDateTextView" />
+
+    <TextView
+        android:id="@+id/customNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_mono_light_italic"
+        android:text="@string/customDateText"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="showAllMeniny"
+        android:text="@string/allMeninyButton"
+        app:layout_constraintEnd_toEndOf="@+id/customDateText"
+        app:layout_constraintStart_toStartOf="@+id/customDateText"
+        app:layout_constraintTop_toBottomOf="@+id/customDateText" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="139dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mono_light_italic"
+        android:inputType="textPersonName"
+        android:text="@string/menoEditText"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/byNameTextView"
+        app:layout_constraintStart_toStartOf="@+id/byNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/byNameTextView" />
+
+    <TextView
+        android:id="@+id/byDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_mono_light_italic"
+        android:text="@string/byDatumTextView"
+        app:layout_constraintEnd_toEndOf="@+id/customNameText"
+        app:layout_constraintStart_toEndOf="@+id/customNameText"
+        app:layout_constraintTop_toBottomOf="@+id/customNameText" />
+
+    <TextView
+        android:id="@+id/byNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_mono_light_italic"
+        android:text="@string/byNameTextView"
+        app:layout_constraintEnd_toStartOf="@+id/customNameText"
+        app:layout_constraintStart_toStartOf="@+id/customNameText"
+        app:layout_constraintTop_toBottomOf="@+id/customNameText" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabButton"
+        android:layout_width="129dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:visibility="visible"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        android:focusable="true" />
+
+</android.support.constraint.ConstraintLayout>
