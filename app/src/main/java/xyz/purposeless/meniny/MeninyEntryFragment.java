@@ -24,8 +24,8 @@ public class MeninyEntryFragment extends Fragment {
     private static final String ARG_DATUM = "MeninyDate";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String name;
+    private String date;
 
     private OnFragmentInteractionListener mListener;
 
@@ -46,8 +46,8 @@ public class MeninyEntryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_MENO);
-            mParam2 = getArguments().getString(ARG_DATUM);
+            name = getArguments().getString(ARG_MENO);
+            date = getArguments().getString(ARG_DATUM);
         }
     }
 

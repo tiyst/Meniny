@@ -26,7 +26,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(DEBUG_TAG, "onReceive()");
-        cp = csvParser.getParser();
+        //cp = new csvParser(this, "sk-meniny.csv");
 
         long when = System.currentTimeMillis();
         NotificationManager notificationManager = (NotificationManager) context
@@ -45,7 +45,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.icon_cal)
                 .setContentTitle("Meniny")
-                .setContentText("Dnes má meniny: " + cp.parseName())
+                //.setContentText("Dnes má meniny: " + cp.parseName())
                 .setSound(alarmSound)
                 .setAutoCancel(true).setWhen(when)
                 .setVibrate(new long[]{1000, 1000, 1000});

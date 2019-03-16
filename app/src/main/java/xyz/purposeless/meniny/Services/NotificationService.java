@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.Calendar;
 
 import xyz.purposeless.meniny.csvParser;
@@ -31,7 +32,11 @@ public class NotificationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        cp = csvParser.getParser();
+        try {
+            cp = new csvParser(this, "sk-meniny.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Log.d("Notification Service", "onCreate");
         startAlarm(true, true);
     }

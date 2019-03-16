@@ -49,10 +49,6 @@ public class Name {
 
 
         return tName.contains(nam);
-        /*if (tName.contains(nam)) {
-            return true;
-        }
-        return false;*/
     }
 
     public String convertDate(String foreignDate) {
@@ -63,7 +59,11 @@ public class Name {
 
     @Override
     public String toString() {
-        return (this.name + " má meniny dňa: " + this.date);
+        if(!isEvent) {
+            return (this.name + " má meniny dňa: " + this.date);
+        } else {
+            return ("Dnes " + this.date + " je " + this.name);
+        }
     }
 
     public void setEvent(boolean event) {

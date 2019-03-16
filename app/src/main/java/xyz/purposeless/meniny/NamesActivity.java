@@ -1,16 +1,23 @@
 package xyz.purposeless.meniny;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class NamesActivity extends Activity {
+public class NamesActivity extends AppCompatActivity implements MeninyEntryFragment.OnFragmentInteractionListener {
 
-    private ListView namesListView;
+    private FragmentManager fragmentManager;
 
     /**
      * Displays all names parsed by csvParser class in ListView
@@ -20,18 +27,36 @@ public class NamesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_names);
 
-        namesListView = (ListView) findViewById(R.id.name_view);
-        final ArrayList<Name> nameList = csvParser.getParser().getNames();
-        String[] listItems = new String[nameList.size()];
+        csvParser parser;
+        this.fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fTransaction = fragmentManager.beginTransaction();
 
-        for (int i = 0; i < listItems.length; i++) {
-            Name name = nameList.get(i);
-            listItems[i] = name.toString();
+        try {
+            parser = new csvParser(this, "sk-meniny.csv");
+            final ArrayList<Name> nameList = parser.getNames();
+            String[] listItems = new String[nameList.size()];
+
+            for (int i = 0; i < listItems.length-1; i++) {
+                String name = nameList.get(i).getName();
+                String date = nameList.get(i).getDate();
+                listItems[i] = name.toString();
+                MeninyEntryFragment frag = MeninyEntryFragment.newInstance(name, date);
+                fTransaction.add(R.id.fragmentLinearLayout, frag);
+            }
+            fTransaction.commit();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
+        //TODO - Implement with Fragments
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
-        //TODO - Implement with NameAdapter and Fragments
-        //NameAdapter nmAdapter = new NameAdapter(this,android.R.layout.simple_list_item_1,listItems);
-        namesListView.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
