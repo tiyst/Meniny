@@ -2,38 +2,44 @@ package xyz.purposeless.meniny;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.Calendar;
 
+import xyz.purposeless.meniny.Database.NameDatabase;
 import xyz.purposeless.meniny.Services.NotificationService;
 
 //TODO - widget support
 public class MainActivity extends AppCompatActivity {
 
     private csvParser cp;
-    private Calendar myCalendar;
+    private Calendar cal;
+    private NameDatabase nameDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myCalendar = Calendar.getInstance();
+        cal = Calendar.getInstance();
 
         parseCsv();
         setupFab();
         initEditText();
-        Intent i = new Intent(this,NotificationService.class);
+        Intent i = new Intent(this, NotificationService.class);
         this.startService(i);
+
+        this.nameDatabase = Room.databaseBuilder(getApplicationContext(),
+                NameDatabase.class, "name").build();
     }
 
     public void parseCsv() {
@@ -51,12 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void setupFab() {
         FloatingActionButton fab = findViewById(R.id.fabButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Contact yay", Snackbar.LENGTH_LONG).show();
-                startActivity(new Intent(MainActivity.this,ContactActivity.class));
-            }
+        fab.setOnClickListener(view -> {
+            Snackbar.make(view, "Contact yay", Snackbar.LENGTH_LONG).show();
+            startActivity(new Intent(MainActivity.this, ContactActivity.class));
         });
     }
 
@@ -76,33 +79,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initEditText() {
-        final EditText edittext = (EditText) findViewById(R.id.customDateText);
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        final EditText edittext = findViewById(R.id.customDateText);
+        final DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
+            cal.set(Calendar.YEAR, year);
+            cal.set(Calendar.MONTH, monthOfYear);
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            ((TextView) findViewById(R.id.headerText)).setText("Meniny " + cal.get(Calendar.DAY_OF_MONTH)
+                    + "/" + cal.get(Calendar.MONTH) + " má: ");
 
-                ((TextView) findViewById(R.id.headerText)).setText("Meniny " + myCalendar.get(Calendar.DAY_OF_MONTH)
-                        + "/" + myCalendar.get(Calendar.MONTH) + " má: ");
-
-                edittext.setText(myCalendar.get(Calendar.DAY_OF_MONTH) + "/" +
-                        myCalendar.get(Calendar.MONTH));
-                ((TextView) findViewById(R.id.nameText)).setText(cp.parseCustomName(myCalendar.getTime()));
-            }
-
+            edittext.setText(cal.get(Calendar.DAY_OF_MONTH) + "/" +
+                    cal.get(Calendar.MONTH));
+            ((TextView) findViewById(R.id.nameText)).setText(cp.parseCustomName(cal.getTime()));
         };
 
-        edittext.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(MainActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
+        edittext.setOnClickListener(v ->
+                new DatePickerDialog(MainActivity.this, date, cal
+                .get(Calendar.YEAR), cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show());
     }
 }

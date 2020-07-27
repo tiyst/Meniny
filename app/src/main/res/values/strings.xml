@@ -11,4 +11,5 @@
     <string name="purposeless_xyz">PURPOSELESS . XYZ</string>
     <string name="contact">Contact Info:\n Facebook: -||-\n Email: -||-</string>
     <string name="nekodesu">ねこです</string>
+    <string name="hasNameday">%1$s má meniny: %2$s</string>
 </resources>

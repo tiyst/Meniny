@@ -47,7 +47,6 @@ public class Name {
                 .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
                 .toLowerCase();
 
-
         return tName.contains(nam);
     }
 

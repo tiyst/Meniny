@@ -1,19 +1,14 @@
 package xyz.purposeless.meniny;
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class NamesActivity extends AppCompatActivity implements MeninyEntryFragment.OnFragmentInteractionListener {
 
